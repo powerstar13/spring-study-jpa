@@ -7,3 +7,4 @@
    - h2database
 2. JPA의 필수 도구 Lombok
 3. H2 DB 연결
+4. Repository Interface 계층 살펴보기
