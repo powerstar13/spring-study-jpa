@@ -197,4 +197,15 @@ class UserRepositoryTest {
 
         userRepository.findAll(example).forEach(System.out::println);
     }
+
+    @Test
+    void updateTest() {
+
+        userRepository.save(new User("david", "david@gmail.com"));
+
+        User user = userRepository.findById(1L).orElseThrow(RuntimeException::new);
+        user.setEmail("master-update@gmail.com");
+
+        userRepository.save(user); // SELECT -> UPDATE 순으로 작동하는 save() 메서드를 이용한 UPDATE
+    }
 }

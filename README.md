@@ -12,3 +12,4 @@
    - data.sql 사용하여 데이터 세팅
    - spring.jpa.show-sql 사용하여 Query Logging
    - spring.jpa.properties.hibernate.format_sql 사용하여 Query를 예쁘게 출력
+6. SimpleJpaRepository 분석
