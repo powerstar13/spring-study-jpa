@@ -8,6 +8,7 @@ import org.springframework.data.domain.*;
 import spring.study.bookmanager.domain.User;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootTest
@@ -227,5 +228,20 @@ class UserRepositoryTest {
 
         System.out.println("findFirst1ByName(): " + userRepository.findFirst1ByName("master").orElseThrow(RuntimeException::new));
         System.out.println("findTop1ByName(): " + userRepository.findTop1ByName("master").orElseThrow(RuntimeException::new));
+    }
+
+    @Test
+    void select2() {
+
+        System.out.println("findAllByEmailAndName(): " + userRepository.findAllByEmailAndName("master@gmail.com", "master"));
+        System.out.println("findAllByEmailOrName(): " + userRepository.findAllByEmailOrName("master@gmail.com", "master"));
+
+        System.out.println("findAllByCreatedAtAfter(): " + userRepository.findAllByCreatedAtAfter(LocalDateTime.now().minusDays(1L)));
+        System.out.println("findAllByIdAfter(): " + userRepository.findAllByIdAfter(4L));
+        System.out.println("findAllByCreatedAtGreaterThan(): " + userRepository.findAllByCreatedAtGreaterThan(LocalDateTime.now().minusDays(1L)));
+        System.out.println("findAllByCreatedAtGreaterThanEqual(): " + userRepository.findAllByCreatedAtGreaterThanEqual(LocalDateTime.now().minusDays(1L)));
+        System.out.println("findAllByCreatedAtBetween(): " + userRepository.findAllByCreatedAtBetween(LocalDateTime.now().minusDays(1L), LocalDateTime.now().plusDays(1L)));
+        System.out.println("findAllByIdBetween(): " + userRepository.findAllByIdBetween(1L, 3L));
+        System.out.println("findAllByIdGreaterThanEqualAndIdLessThanEqual(): " + userRepository.findAllByIdGreaterThanEqualAndIdLessThanEqual(1L, 3L));
     }
 }
