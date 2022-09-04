@@ -267,4 +267,14 @@ class UserRepositoryTest {
         System.out.println("findUserByName(): " + userRepository.findUserByName("master"));
         System.out.println("findAllByNameEquals(): " + userRepository.findAllByNameEquals("master"));
     }
+
+    @Test
+    @Transactional
+    void sortingTest() {
+
+        System.out.println("findTop1ByName(): " + userRepository.findTop1ByName("master").orElseThrow(RuntimeException::new));
+        System.out.println("findTop1ByNameOrderByIdDesc(): " + userRepository.findTop1ByNameOrderByIdDesc("master").orElseThrow(RuntimeException::new));
+        System.out.println("findFirst1ByNameOrderByIdDescEmailAsc(): " + userRepository.findFirst1ByNameOrderByIdDescEmailAsc("master").orElseThrow(RuntimeException::new));
+        System.out.println("findFirstByNameWithSortParams(): " + userRepository.findFirstByName("master", Sort.by(Sort.Order.desc("id"), Sort.Order.asc("email"))).orElseThrow(RuntimeException::new));
+    }
 }

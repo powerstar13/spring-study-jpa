@@ -1,5 +1,6 @@
 package spring.study.bookmanager.repository;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import spring.study.bookmanager.domain.User;
@@ -48,4 +49,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findAllByNameIs(String name);
     List<User> findUserByName(String name);
     List<User> findAllByNameEquals(String name);
+
+    // 쿼리메서드로 정렬시켜보기
+    Optional<User> findTop1ByNameOrderByIdDesc(String name);
+    Optional<User> findFirst1ByNameOrderByIdDescEmailAsc(String name);
+    Optional<User> findFirstByName(String name, Sort sort);
 }
