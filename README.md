@@ -13,3 +13,4 @@
    - spring.jpa.show-sql 사용하여 Query Logging
    - spring.jpa.properties.hibernate.format_sql 사용하여 Query를 예쁘게 출력
 6. SimpleJpaRepository 분석
+7. QueryMethod 기본 실습

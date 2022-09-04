@@ -208,4 +208,24 @@ class UserRepositoryTest {
 
         userRepository.save(user); // SELECT -> UPDATE 순으로 작동하는 save() 메서드를 이용한 UPDATE
     }
+
+    // ===== QueryMethod 활용 =====
+
+    @Test
+    void select() {
+
+        userRepository.findAllByName("master").forEach(System.out::println);
+
+        System.out.println("findByEmail(): " + userRepository.findByEmail("master@gmail.com").orElseThrow(RuntimeException::new));
+        System.out.println("getByEmail(): " + userRepository.getByEmail("master@gmail.com").orElseThrow(RuntimeException::new));
+        System.out.println("readByEmail(): " + userRepository.readByEmail("master@gmail.com").orElseThrow(RuntimeException::new));
+        System.out.println("queryByEmail(): " + userRepository.queryByEmail("master@gmail.com").orElseThrow(RuntimeException::new));
+        System.out.println("searchByEmail(): " + userRepository.searchByEmail("master@gmail.com").orElseThrow(RuntimeException::new));
+        System.out.println("streamByEmail(): " + userRepository.streamByEmail("master@gmail.com").orElseThrow(RuntimeException::new));
+        System.out.println("findUserByEmail(): " + userRepository.findUserByEmail("master@gmail.com").orElseThrow(RuntimeException::new));
+        System.out.println("findSomethingByEmail(): " + userRepository.findSomethingByEmail("master@gmail.com").orElseThrow(RuntimeException::new));
+
+        System.out.println("findFirst1ByName(): " + userRepository.findFirst1ByName("master").orElseThrow(RuntimeException::new));
+        System.out.println("findTop1ByName(): " + userRepository.findTop1ByName("master").orElseThrow(RuntimeException::new));
+    }
 }
