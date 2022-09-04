@@ -1,5 +1,7 @@
 package spring.study.bookmanager.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -54,4 +56,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findTop1ByNameOrderByIdDesc(String name);
     Optional<User> findFirst1ByNameOrderByIdDescEmailAsc(String name);
     Optional<User> findFirstByName(String name, Sort sort);
+
+    // 쿼리메서드로 페이징 처리하기
+    Page<User> findByName(String name, Pageable pageable);
 }

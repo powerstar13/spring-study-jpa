@@ -15,3 +15,4 @@
 6. SimpleJpaRepository 분석
 7. QueryMethod 기본 실습
 8. 쿼리메서드로 정렬시켜보기
+9. 쿼리메서드로 페이징 처리하기

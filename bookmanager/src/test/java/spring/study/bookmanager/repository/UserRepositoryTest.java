@@ -277,4 +277,12 @@ class UserRepositoryTest {
         System.out.println("findFirst1ByNameOrderByIdDescEmailAsc(): " + userRepository.findFirst1ByNameOrderByIdDescEmailAsc("master").orElseThrow(RuntimeException::new));
         System.out.println("findFirstByNameWithSortParams(): " + userRepository.findFirstByName("master", Sort.by(Sort.Order.desc("id"), Sort.Order.asc("email"))).orElseThrow(RuntimeException::new));
     }
+
+    @Test
+    @Transactional
+    void pagingTest() {
+
+        System.out.println("findByNameWithPaging(): " + userRepository.findByName("master", PageRequest.of(0, 1, Sort.by(Sort.Order.desc("id")))).getContent()); // page는 zero index부터 시작한다.
+        System.out.println("findByNameWithPaging(): " + userRepository.findByName("master", PageRequest.of(0, 1, Sort.by(Sort.Order.desc("id")))).getTotalElements());
+    }
 }
