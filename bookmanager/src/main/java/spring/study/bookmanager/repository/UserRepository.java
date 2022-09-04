@@ -33,4 +33,19 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findAllByCreatedAtBetween(LocalDateTime yesterday, LocalDateTime tomorrow); // Between: 포함하는
     List<User> findAllByIdBetween(Long id1, Long id2);
     List<User> findAllByIdGreaterThanEqualAndIdLessThanEqual(Long id1, Long id2); // Between을 풀어 쓴 것과 같다.
+
+    List<User> findAllByIdIsNotNull();
+    List<User> findAllByAddressIsNotEmpty(); // IsEmpty / IsNotEmpty can only be used on collection properties!
+
+    List<User> findAllByNameIn(List<String> names);
+
+    List<User> findAllByNameStartingWith(String name);
+    List<User> findAllByNameEndingWith(String name);
+    List<User> findAllByNameContains(String name);
+    List<User> findAllByNameLike(String name);
+
+    // 가독성을 제시하는 키워드 Is, Equals
+    List<User> findAllByNameIs(String name);
+    List<User> findUserByName(String name);
+    List<User> findAllByNameEquals(String name);
 }

@@ -244,4 +244,27 @@ class UserRepositoryTest {
         System.out.println("findAllByIdBetween(): " + userRepository.findAllByIdBetween(1L, 3L));
         System.out.println("findAllByIdGreaterThanEqualAndIdLessThanEqual(): " + userRepository.findAllByIdGreaterThanEqualAndIdLessThanEqual(1L, 3L));
     }
+
+    @Test
+    @Transactional
+    void select3() {
+
+        System.out.println("findAllByIdIsNotNull(): " + userRepository.findAllByIdIsNotNull());
+        System.out.println("findAllByAddressIsNotEmpty(): " + userRepository.findAllByAddressIsNotEmpty());
+
+        System.out.println("findAllByNameIn(): " + userRepository.findAllByNameIn(Lists.newArrayList("master", "dennis")));
+
+        System.out.println("findAllByNameStartingWith(): " + userRepository.findAllByNameStartingWith("mas"));
+        System.out.println("findAllByNameEndingWith(): " + userRepository.findAllByNameEndingWith("ter"));
+        System.out.println("findAllByNameContains(): " + userRepository.findAllByNameContains("ast"));
+
+        System.out.println("findAllByNameLike(): " + userRepository.findAllByNameLike("mas%")); // StartingWith
+        System.out.println("findAllByNameLike(): " + userRepository.findAllByNameLike("%ter")); // EndingWith
+        System.out.println("findAllByNameLike(): " + userRepository.findAllByNameLike("%ast%")); // Contains
+
+        System.out.println("findAllByName(): " + userRepository.findAllByName("master"));
+        System.out.println("findAllByNameIs(): " + userRepository.findAllByNameIs("master"));
+        System.out.println("findUserByName(): " + userRepository.findUserByName("master"));
+        System.out.println("findAllByNameEquals(): " + userRepository.findAllByNameEquals("master"));
+    }
 }
