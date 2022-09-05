@@ -1,23 +1,17 @@
 package spring.study.bookmanager.domain;
 
 import lombok.*;
-import spring.study.bookmanager.domain.listener.Auditable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-//@EntityListeners(value = MyEntityListener.class) // 반복적인 코드를 줄일 수 있도록 @EntityListeners 애노테이션을 사용할 수 있다.
-//@EntityListeners(value = { AuditingEntityListener.class })
-public class Book extends BaseEntity implements Auditable {
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+public class Book extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,22 +19,13 @@ public class Book extends BaseEntity implements Auditable {
 
     private String name;
 
-    private String author;
+    private String category;
 
-//    @CreatedDate
-//    private LocalDateTime createdAt;
-//
-//    @LastModifiedDate
-//    private LocalDateTime updatedAt;
+    private Long authorId;
 
-//    @PrePersist
-//    public void prePersist() {
-//        this.createdAt = LocalDateTime.now();
-//        this.updatedAt = LocalDateTime.now();
-//    }
+    private Long publisherId;
 
-//    @PreUpdate
-//    public void preUpdate() {
-//        this.updatedAt = LocalDateTime.now();
-//    }
+    @OneToOne(mappedBy = "book") // mappedBy: 해당 필드를 Table에서 가지고 있지 않지만 연결해주기 위함으로 쓰인다.
+    @ToString.Exclude // 양방향 순환 참조가 걸리는 ToString을 Exclude를 통해 풀어줄 수 있다.
+    private BookReviewInfo bookReviewInfo;
 }

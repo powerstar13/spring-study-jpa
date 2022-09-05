@@ -32,3 +32,8 @@
     - @LastModifiedDate
     - @MappedSuperclass
 12. 연관관계(relation) 및 ERD 알아보기
+13. 1:1 연관관계 알아보기
+    - @OneToOne
+      - optional
+      - mappedBy
+    - @ToString.Exclude
