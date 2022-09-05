@@ -31,3 +31,4 @@
     - @CreatedDate
     - @LastModifiedDate
     - @MappedSuperclass
+12. 연관관계(relation) 및 ERD 알아보기
