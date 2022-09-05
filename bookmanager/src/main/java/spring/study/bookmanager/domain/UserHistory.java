@@ -15,32 +15,23 @@ import javax.persistence.Id;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-//@EntityListeners(value = MyEntityListener.class) // 반복적인 코드를 줄일 수 있도록 @EntityListeners 애노테이션을 사용할 수 있다.
+//@EntityListeners(value = MyEntityListener.class)
 //@EntityListeners(value = { AuditingEntityListener.class })
-public class Book extends BaseEntity implements Auditable {
+public class UserHistory extends BaseEntity implements Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Long userId;
+
     private String name;
 
-    private String author;
+    private String email;
 
 //    @CreatedDate
 //    private LocalDateTime createdAt;
 //
 //    @LastModifiedDate
 //    private LocalDateTime updatedAt;
-
-//    @PrePersist
-//    public void prePersist() {
-//        this.createdAt = LocalDateTime.now();
-//        this.updatedAt = LocalDateTime.now();
-//    }
-
-//    @PreUpdate
-//    public void preUpdate() {
-//        this.updatedAt = LocalDateTime.now();
-//    }
 }

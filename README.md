@@ -26,3 +26,8 @@
     - @PostRemove
     - @PostLoad
     - @EntityListeners
+    - @EnableJpaAuditing
+    - @EntityListeners(value = { AuditingEntityListener.class })
+    - @CreatedDate
+    - @LastModifiedDate
+    - @MappedSuperclass

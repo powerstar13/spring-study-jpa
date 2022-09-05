@@ -1,4 +1,4 @@
-package spring.study.bookmanager.domain;
+package spring.study.bookmanager.domain.listener;
 
 import java.time.LocalDateTime;
 
