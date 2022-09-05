@@ -54,3 +54,6 @@
     - 아주 특별한 필요가 없는 이상 OneToMany와 ManyToOne을 사용하여 ManyToMany을 피해가는 것이 좋다.
     - ManyToMany는 중간 테이블이 생성된다.
     - 연관관계를 풀어내기 위해 1:N:1 조합으로 설계하는 것이 좋다.
+17. M:N 연관관계를 1:N:1 연관관계로 풀어내기
+    - @OneToMany
+    - @ManyToOne
