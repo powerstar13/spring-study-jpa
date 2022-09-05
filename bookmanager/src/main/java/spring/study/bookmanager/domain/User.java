@@ -33,7 +33,14 @@ public class User extends BaseEntity {
     private Gender gender;
 
     @Builder.Default
+    @ToString.Exclude
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", insertable = false, updatable = false) // 잠재적인 성능 이슈를 막기 위해 개발자가 원하는 최적의 쿼리만 작동하도록 insertable과 updatable을 false 처리하여 막아준다.
     private List<UserHistory> userHistories = new ArrayList<>(); // NullPointerException을 방지하기 위해 new ArrayList<>() 초기화
+
+    @Builder.Default
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    @ToString.Exclude
+    private List<Review> reviews = new ArrayList<>();
 }

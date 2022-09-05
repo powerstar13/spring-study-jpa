@@ -9,8 +9,6 @@ import spring.study.bookmanager.domain.UserHistory;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 class UserHistoryRepositoryTest {
 
@@ -60,5 +58,7 @@ class UserHistoryRepositoryTest {
             .getUserHistories();
 
         result.forEach(System.out::println);
+
+        System.out.println("UserHistory.getUser(): " + userHistoryRepository.findAll().get(0).getUser());
     }
 }

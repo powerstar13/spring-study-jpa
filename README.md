@@ -37,7 +37,7 @@
       - optional
       - mappedBy
     - @ToString.Exclude
-14. 1대N 연관관계 살펴보기
+14. 1:N 연관관계 알아보기
     - @Column
       - name
     - @OneToMany
@@ -46,3 +46,5 @@
       - name
       - insertable
       - updateable
+15. N:1 연관관계 알아보기
+    - @ManyToOne

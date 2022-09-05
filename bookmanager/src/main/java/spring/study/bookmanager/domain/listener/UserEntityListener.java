@@ -19,9 +19,9 @@ public class UserEntityListener {
         User user = (User) o;
 
         UserHistory userHistory = UserHistory.builder()
-            .userId(user.getId())
             .name(user.getName())
             .email(user.getEmail())
+            .user(user)
             .build();
 
         userHistoryRepository.save(userHistory);

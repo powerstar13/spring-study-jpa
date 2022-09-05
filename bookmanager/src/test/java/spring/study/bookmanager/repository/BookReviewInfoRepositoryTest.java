@@ -43,7 +43,6 @@ class BookReviewInfoRepositoryTest {
         Book book = Book.builder()
             .name("Jpa 초격차 패키지")
             .authorId(1L)
-            .publisherId(1L)
             .build();
 
         return bookRepository.save(book);

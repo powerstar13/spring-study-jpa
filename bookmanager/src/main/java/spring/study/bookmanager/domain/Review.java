@@ -5,23 +5,27 @@ import lombok.*;
 import javax.persistence.*;
 
 @Data
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserHistory extends BaseEntity {
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+public class Review extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String title;
 
-    private String email;
+    private String content;
+
+    private float score;
 
     @ManyToOne
-    @JoinColumn
     private User user;
+
+    @ManyToOne
+    private Book book;
 }
