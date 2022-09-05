@@ -17,3 +17,12 @@
 8. 쿼리메서드로 정렬시켜보기
 9. 쿼리메서드로 페이징 처리하기
 10. Entity의 기본속성 (annotation)
+11. Entity의 Listener 활용
+    - @prePersist
+    - @PostPersist
+    - @PreUpdate
+    - @PostUpdate
+    - @PreRemove
+    - @PostRemove
+    - @PostLoad
+    - @EntityListeners

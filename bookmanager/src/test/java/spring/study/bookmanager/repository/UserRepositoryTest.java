@@ -339,4 +339,50 @@ class UserRepositoryTest {
 
         System.out.println(userRepository.findRawRecord().get("gender"));
     }
+
+    // ===== Entity의 Listener 활용하기 =====
+
+    @Test
+    @Transactional
+    void listenerTest() {
+
+        User user = new User("master", "master2@gmail.com");
+        userRepository.save(user);
+
+        userRepository.save(user);
+
+        User foundUser = userRepository.findById(1L).orElseThrow(RuntimeException::new);
+        foundUser.setName("maaaaaaster");
+
+        userRepository.save(foundUser);
+
+        userRepository.deleteById(4L);
+    }
+
+    @Test
+    @Transactional
+    void prePersistTest() {
+
+        User user = User.builder()
+            .name("master")
+            .email("master2@gmail.com")
+            .build();
+
+        userRepository.save(user);
+
+        System.out.println(userRepository.findByEmail("master2@gmail.com"));
+    }
+
+    @Test
+    @Transactional
+    void preUpdateTest() {
+
+        User user = userRepository.findById(1L).orElseThrow(RuntimeException::new);
+        System.out.println("as-is: " + user);
+
+        user.setName("maaaaaster");
+        userRepository.save(user);
+
+        System.out.println("to-be: " + userRepository.findAll().get(0));
+    }
 }
