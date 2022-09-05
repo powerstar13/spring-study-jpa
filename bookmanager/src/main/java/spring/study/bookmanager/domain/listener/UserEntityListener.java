@@ -5,14 +5,14 @@ import spring.study.bookmanager.domain.UserHistory;
 import spring.study.bookmanager.repository.UserHistoryRepository;
 import spring.study.bookmanager.support.BeanUtil;
 
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
+import javax.persistence.PostPersist;
+import javax.persistence.PostUpdate;
 
 public class UserEntityListener {
 
-    @PrePersist
-    @PreUpdate
-    public void prePersistAndPreUpdate(Object o) {
+    @PostPersist
+    @PostUpdate
+    public void postPersistAndPostUpdate(Object o) {
 
         UserHistoryRepository userHistoryRepository = BeanUtil.getBean(UserHistoryRepository.class);
 

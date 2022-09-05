@@ -40,7 +40,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findAllByIdGreaterThanEqualAndIdLessThanEqual(Long id1, Long id2); // Between을 풀어 쓴 것과 같다.
 
     List<User> findAllByIdIsNotNull();
-    List<User> findAllByAddressIsNotEmpty(); // IsEmpty / IsNotEmpty can only be used on collection properties!
 
     List<User> findAllByNameIn(List<String> names);
 

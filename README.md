@@ -37,3 +37,12 @@
       - optional
       - mappedBy
     - @ToString.Exclude
+14. 1대N 연관관계 살펴보기
+    - @Column
+      - name
+    - @OneToMany
+      - fetch
+    - @JoinColumn
+      - name
+      - insertable
+      - updateable

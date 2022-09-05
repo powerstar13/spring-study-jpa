@@ -273,7 +273,6 @@ class UserRepositoryTest {
     void select3() {
 
         System.out.println("findAllByIdIsNotNull(): " + userRepository.findAllByIdIsNotNull());
-        System.out.println("findAllByAddressIsNotEmpty(): " + userRepository.findAllByAddressIsNotEmpty());
 
         System.out.println("findAllByNameIn(): " + userRepository.findAllByNameIn(Lists.newArrayList("master", "dennis")));
 

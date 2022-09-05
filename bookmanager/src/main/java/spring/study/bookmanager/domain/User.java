@@ -4,6 +4,7 @@ import lombok.*;
 import spring.study.bookmanager.domain.listener.UserEntityListener;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -31,9 +32,8 @@ public class User extends BaseEntity {
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Address> address;
-
-    @Transient
-    private String testData;
+    @Builder.Default
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", insertable = false, updatable = false) // 잠재적인 성능 이슈를 막기 위해 개발자가 원하는 최적의 쿼리만 작동하도록 insertable과 updatable을 false 처리하여 막아준다.
+    private List<UserHistory> userHistories = new ArrayList<>(); // NullPointerException을 방지하기 위해 new ArrayList<>() 초기화
 }
