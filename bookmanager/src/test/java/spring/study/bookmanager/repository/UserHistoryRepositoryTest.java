@@ -7,9 +7,11 @@ import spring.study.bookmanager.domain.Gender;
 import spring.study.bookmanager.domain.User;
 import spring.study.bookmanager.domain.UserHistory;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @SpringBootTest
+@Transactional
 class UserHistoryRepositoryTest {
 
     @Autowired

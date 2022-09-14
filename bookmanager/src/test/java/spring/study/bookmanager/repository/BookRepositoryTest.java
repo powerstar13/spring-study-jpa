@@ -11,6 +11,7 @@ import spring.study.bookmanager.domain.User;
 import javax.transaction.Transactional;
 
 @SpringBootTest
+@Transactional
 class BookRepositoryTest {
 
     @Autowired
@@ -39,7 +40,6 @@ class BookRepositoryTest {
 
 
     @Test
-    @Transactional
     void bookRelationTest() {
 
         this.givenBookAndReview();

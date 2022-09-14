@@ -13,13 +13,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootTest
+@Transactional
 class UserRepositoryTest {
 
     @Autowired
     private UserRepository userRepository;
 
     @Test
-    @Transactional
     void findAllTest() {
 
         List<User> users = userRepository.findAll(Sort.by(Sort.Direction.DESC, "name"));
@@ -27,7 +27,6 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void findAllByIdTest() {
 
         List<User> users = userRepository.findAllById(Lists.newArrayList(1L, 3L, 5L));
@@ -35,7 +34,6 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void saveAllTest() {
 
         User user1 = new User("jack", "jack@gamil.com");
@@ -48,7 +46,6 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void saveTest() {
 
         User user = new User("jack", "jack@gamil.com");
@@ -60,15 +57,13 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void getOneTest() {
 
-        User user = userRepository.getOne(1L); // getOne() 메서드의 could not initialize proxy - no Session 에러를 대응하기 위해 @Transactional 애노테이션을 사용해야 함 (getOne 메서드는 LAZY fetch를 지원하고 있다.)
+        User user = userRepository.getOne(1L); // getOne() 메서드의 could not initialize proxy - no Session 에러를 대응하기 위해 애노테이션을 사용해야 함 (getOne 메서드는 LAZY fetch를 지원하고 있다.)
         System.out.println(user);
     }
 
     @Test
-    @Transactional
     void findByIdTest() {
 
         User user = userRepository.findById(1L)
@@ -77,7 +72,6 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void flushTest() {
 
         User user = new User("new martin", "newmartin@gamil.com");
@@ -90,7 +84,6 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void saveAndFlushTest() {
 
         User user = new User("new martin", "newmartin@gamil.com");
@@ -101,7 +94,6 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void countTest() {
 
         long count = userRepository.count();
@@ -110,7 +102,6 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void existsByIdTest() {
 
         boolean exists = userRepository.existsById(1L); // COUNT 쿼리가 동작하는 것을 확인할 수 있음
@@ -119,7 +110,6 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void deleteTest() {
 
         userRepository.delete(userRepository.findById(1L).orElseThrow(RuntimeException::new)); // SELECT를 하고 DELETE 하는 delete() 메서드
@@ -127,7 +117,6 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void deleteByIdTest() {
 
         userRepository.deleteById(1L); // SELECT를 하고 DELETE 하는 deleteById() 메서드
@@ -135,7 +124,6 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void deleteAllTest() {
 
         userRepository.deleteAll(); // SELECT를 하고 DELETE 하는 deleteAll() 메서드
@@ -143,7 +131,6 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void deleteAllByIdTest() {
 
         userRepository.deleteAll(userRepository.findAllById(Lists.newArrayList(1L, 3L))); // SELECT를 하고 DELETE 하는 deleteAllById() 메서드
@@ -151,7 +138,6 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void deleteInBatchTest() {
 
         userRepository.deleteInBatch(userRepository.findAllById(Lists.newArrayList(1L, 3L))); // 바로 DELETE 하는 deleteInBatch() 메서드
@@ -159,7 +145,6 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void deleteAllInBatchTest() {
 
         userRepository.deleteAllInBatch(); // 바로 DELETE 하는 deleteAllInBatch() 메서드
@@ -167,7 +152,6 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void pageTest() {
 
         Page<User> users = userRepository.findAll(PageRequest.of(1, 3));
@@ -183,7 +167,6 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void queryByExampleWithMatcherTest() {
 
         ExampleMatcher matcher = ExampleMatcher.matching()
@@ -196,7 +179,6 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void queryByExampleTest() {
 
         Example<User> example = Example.of(new User("master", "master@gmail.com")); // LIKE절을 사용하는 of() 메서드
@@ -205,7 +187,6 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void queryByExampleWithMatcher2Test() {
 
         User user = new User();
@@ -220,7 +201,6 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void updateTest() {
 
         userRepository.save(new User("david", "david@gmail.com"));
@@ -234,7 +214,6 @@ class UserRepositoryTest {
     // ===== QueryMethod 활용 =====
 
     @Test
-    @Transactional
     void select() {
 
         userRepository.findAllByName("master").forEach(System.out::println);
@@ -253,7 +232,6 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void select2() {
 
         System.out.println("findAllByEmailAndName(): " + userRepository.findAllByEmailAndName("master@gmail.com", "master"));
@@ -269,7 +247,6 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void select3() {
 
         System.out.println("findAllByIdIsNotNull(): " + userRepository.findAllByIdIsNotNull());
@@ -291,7 +268,6 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void sortingTest() {
 
         System.out.println("findTop1ByName(): " + userRepository.findTop1ByName("master").orElseThrow(RuntimeException::new));
@@ -301,7 +277,6 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void pagingTest() {
 
         System.out.println("findByNameWithPaging(): " + userRepository.findByName("master", PageRequest.of(0, 1, Sort.by(Sort.Order.desc("id")))).getContent()); // page는 zero index부터 시작한다.
@@ -309,7 +284,6 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void insertAndUpdateTest() {
 
         User user = new User();
@@ -326,7 +300,6 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void enumTest() {
 
         User user = userRepository.findById(1L).orElseThrow(RuntimeException::new);
@@ -342,7 +315,6 @@ class UserRepositoryTest {
     // ===== Entity의 Listener 활용하기 =====
 
     @Test
-    @Transactional
     void listenerTest() {
 
         User user = new User("master", "master2@gmail.com");
@@ -359,7 +331,6 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void prePersistTest() {
 
         User user = User.builder()
@@ -373,7 +344,6 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     void preUpdateTest() {
 
         User user = userRepository.findById(1L).orElseThrow(RuntimeException::new);

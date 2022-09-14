@@ -10,9 +10,8 @@ import spring.study.bookmanager.domain.BookAndAuthor;
 
 import javax.transaction.Transactional;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
+@Transactional
 class AuthorRepositoryTest {
 
     @Autowired
@@ -23,7 +22,6 @@ class AuthorRepositoryTest {
     private BookAndAuthorRepository bookAndAuthorRepository;
 
     @Test
-    @Transactional
     void manyToManyTest() {
 
         Book book1 = this.givenBook("책1");

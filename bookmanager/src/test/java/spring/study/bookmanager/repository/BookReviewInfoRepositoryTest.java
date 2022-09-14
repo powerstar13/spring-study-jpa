@@ -6,7 +6,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import spring.study.bookmanager.domain.Book;
 import spring.study.bookmanager.domain.BookReviewInfo;
 
+import javax.transaction.Transactional;
+
 @SpringBootTest
+@Transactional
 class BookReviewInfoRepositoryTest {
 
     @Autowired
@@ -22,16 +25,16 @@ class BookReviewInfoRepositoryTest {
 
     @Test
     void crudTest2() {
+    
+        BookReviewInfo bookReviewInfo = this.givenBookReviewInfo();
 
-        this.givenBookReviewInfo();
-
-        Book result = bookReviewInfoRepository.findById(1L)
+        Book result = bookReviewInfoRepository.findById(bookReviewInfo.getId())
             .orElseThrow(RuntimeException::new)
             .getBook();
 
         System.out.println(">>> " + result);
 
-        BookReviewInfo result2 = bookRepository.findById(1L)
+        BookReviewInfo result2 = bookRepository.findById(result.getId())
             .orElseThrow(RuntimeException::new)
             .getBookReviewInfo();
 
@@ -48,7 +51,7 @@ class BookReviewInfoRepositoryTest {
         return bookRepository.save(book);
     }
 
-    private void givenBookReviewInfo() {
+    private BookReviewInfo givenBookReviewInfo() {
 
         BookReviewInfo bookReviewInfo = BookReviewInfo.builder()
             .book(givenBook())
@@ -56,8 +59,6 @@ class BookReviewInfoRepositoryTest {
             .reviewCount(2)
             .build();
 
-        bookReviewInfoRepository.save(bookReviewInfo);
-
-        System.out.println(bookReviewInfoRepository.findAll());
+        return bookReviewInfoRepository.save(bookReviewInfo);
     }
 }
