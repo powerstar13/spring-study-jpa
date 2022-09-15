@@ -72,3 +72,5 @@
 22. UncheckedException과 CheckedException의 차이
     - UncheckedExcpetion는 Transactional이 있으면 rollback 처리됨
     - CheckedException는 try-catch를 통해 핸들링을 강제한다. (Transactional이 있더라도 rollback되지 않음)
+    - rollbackFor 옵션을 사용하여 CheckedException 또한 rollbackOn() 메서드 안에 들어갈 수 있도록 등록할 수 있다.
+23. WARN: 같은 Bean 안에서 메서드가 다른 메서드를 호출할 경우 @Transactional 애노테이션을 무시한다.
