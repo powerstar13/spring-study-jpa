@@ -57,3 +57,11 @@
 17. M:N 연관관계를 1:N:1 연관관계로 풀어내기
     - @OneToMany
     - @ManyToOne
+18. 영속성 컨텍스트(Persistence Context)
+    - MySQL 연결
+19. Entity 캐시
+20. Entity 생명주기
+    - 비 영속 상태
+    - 영속 상태
+    - 준 영속 상태
+    - 삭제 상태
