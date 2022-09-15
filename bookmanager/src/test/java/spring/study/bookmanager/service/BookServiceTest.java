@@ -6,8 +6,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import spring.study.bookmanager.repository.AuthorRepository;
 import spring.study.bookmanager.repository.BookRepository;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 class BookServiceTest {
     
@@ -20,8 +18,12 @@ class BookServiceTest {
     
     @Test
     void transactionTest() {
-        
-        bookService.putBookAndAuthor();
+
+        try {
+            bookService.putBookAndAuthor();
+        } catch (Exception e) {
+            System.out.println(">>> " + e.getMessage());
+        }
     
         System.out.println("books: " + bookRepository.findAll());
         System.out.println("authors: " + authorRepository.findAll());

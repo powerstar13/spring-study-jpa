@@ -69,3 +69,6 @@
     - 메서드에 @Transactional 애노테이션 사용
       - 메서드의 시작이 트랜잭션 시작
       - 메서드의 종료가 트랜잭션 종료
+22. UncheckedException과 CheckedException의 차이
+    - UncheckedExcpetion는 Transactional이 있으면 rollback 처리됨
+    - CheckedException는 try-catch를 통해 핸들링을 강제한다. (Transactional이 있더라도 rollback되지 않음)
