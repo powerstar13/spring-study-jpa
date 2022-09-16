@@ -115,3 +115,5 @@
     - JPQL의 JOIN FETCH를 이용하는 방법
     - EntityGraph를 이용하는 방법
 36. 영속성 컨텍스트 불일치 이슈
+37. JPA에서 DirtyCheck와 성능 이슈
+    - @Transactional 애노테이션에서 readOnly 옵션을 이용하면 Dirty Check 자체가 Skip 하게 된다.
