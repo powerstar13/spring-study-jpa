@@ -55,4 +55,17 @@ class BookServiceTest {
 
         System.out.println(">>> " + bookRepository.findAll());
     }
+
+    @Test
+    void propagationTest() {
+
+        try {
+            bookService.putPropagation();
+        } catch (RuntimeException e) {
+            System.out.println(">>> " + e.getMessage());
+        }
+
+        System.out.println("books: " + bookRepository.findAll());
+        System.out.println("authors: " + authorRepository.findAll());
+    }
 }

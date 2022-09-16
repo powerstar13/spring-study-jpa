@@ -3,6 +3,7 @@ package spring.study.bookmanager.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import spring.study.bookmanager.domain.Author;
 import spring.study.bookmanager.domain.Book;
@@ -18,6 +19,7 @@ public class BookService {
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
     private final EntityManager entityManager;
+    private final AuthorService authorService;
 
     public void put() {
         this.putBookAndAuthor(); // putBookAndAuthor() 메서드의 @Transactional 애노테이션을 무시하게 된다.
@@ -61,5 +63,22 @@ public class BookService {
         Book book = bookRepository.findById(id).get();
         book.setName("바뀔까?");
         bookRepository.save(book);
+    }
+
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED) // 트랜잭션이 authoreService까지 전파된다. 트랜잭션을 재활용한다.
+    public void putPropagation() {
+
+        Book book = new Book();
+        book.setName("JPA 시작하기");
+
+        bookRepository.save(book);
+
+        try {
+            authorService.putAuthor();
+        } catch (RuntimeException e) {
+            System.out.println(">>> " + e.getMessage());
+        }
+
+//        throw new RuntimeException("오류가 발생했습니다. 트랜잭션은 어떻게 될까요?");
     }
 }

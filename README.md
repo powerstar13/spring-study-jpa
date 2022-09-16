@@ -79,3 +79,13 @@
     - READ_COMMITTED
     - REPEATABLE_READ
     - SERIALIZABLE
+25. @Transactional 애노테이션의 propagation(전파) 옵션
+    - REQUIRED
+    - REQUIRES_NEW
+    - NESTED
+    - SUPPORTS
+    - NOT_SUPPORTED
+    - MANDATORY
+    - NEVER
+26. @Transactional 애노테이션은 Type과 Method에 붙일 수 있다.
+    - Type이란 Class를 말함
