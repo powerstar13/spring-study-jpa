@@ -2,6 +2,7 @@ package spring.study.bookmanager.domain;
 
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.List;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @DynamicUpdate // 필요한 정보만 UPDATE하기 때문에 불필요한 요소까지 SET하지 않는다. (Dirty Read의 경우 사용하기 좋음)
+@Where(clause = "deleted = false")
 public class Book extends BaseEntity {
 
     @Id
@@ -38,7 +40,7 @@ public class Book extends BaseEntity {
     @ToString.Exclude
     private List<Review> reviews = new ArrayList<>();
 
-    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}) // cascade 옵션을 통해 영속성 전이를 일으킨다. Book이 Persist, Merge, Remove가 될 때 Publisher도 Persist, Merge, Remove 해라는 의미이다.
+    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE }) // cascade 옵션을 통해 영속성 전이를 일으킨다. Book이 Persist, Merge, Remove가 될 때 Publisher도 Persist, Merge, Remove 해라는 의미이다.
     @ToString.Exclude
     private Publisher publisher;
 
@@ -53,6 +55,8 @@ public class Book extends BaseEntity {
     @Builder.Default
     @ToString.Exclude
     private List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
+
+    private boolean deleted; // flag 사용하여 삭제 된 것으로 간주
 
 //    public void addAuthor(Author... authors) {
 //        Collections.addAll(this.authors, authors);

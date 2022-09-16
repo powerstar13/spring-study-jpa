@@ -96,3 +96,7 @@
     - REMOVE
     - REFRESH
     - DETACH
+28. JPA에서 OrphanRemoval(고아제거속성) 활용하기
+    - orphanRemoval 옵션은 부모 엔티티에서 자식 엔티티를 삭제할 때 사용
+29. 현업에서 많이 사용하는 Soft Delete 방식
+    - Entity에서 deleted를 flag 값으로 사용하고 @Where 애노테이션을 통해 clause 옵션에 Query를 명시
