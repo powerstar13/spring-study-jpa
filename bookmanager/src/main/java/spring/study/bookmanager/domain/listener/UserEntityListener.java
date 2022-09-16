@@ -22,6 +22,8 @@ public class UserEntityListener {
             .name(user.getName())
             .email(user.getEmail())
             .user(user)
+            .homeAddress(user.getHomeAddress())
+            .companyAddress(user.getCompanyAddress())
             .build();
 
         userHistoryRepository.save(userHistory);

@@ -64,4 +64,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     // Native Query 사용하기
     @Query(value = "SELECT * FROM users LIMIT 1;", nativeQuery = true)
     Map<String, Object> findRawRecord();
+
+    @Query(value = "SELECT * FROM users", nativeQuery = true)
+    List<Map<String, Object>> findAllRawRecord();
 }

@@ -109,3 +109,5 @@
     - @Converter 애노테이션 사용
       - autoApply 속성 사용 시 주의
     - @Convert 애노테이션 사용
+34. @Embedded, @Embeddable
+    - @AttributeOverride 애노테이션을 통해 별도로 매핑할 수도 있다.
