@@ -11,6 +11,7 @@ import spring.study.bookmanager.repository.AuthorRepository;
 import spring.study.bookmanager.repository.BookRepository;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -80,5 +81,15 @@ public class BookService {
         }
 
 //        throw new RuntimeException("오류가 발생했습니다. 트랜잭션은 어떻게 될까요?");
+    }
+
+    @Transactional
+    public List<Book> getAll() {
+
+        List<Book> books = bookRepository.findAll();
+
+        books.forEach(System.out::println);
+
+        return books;
     }
 }

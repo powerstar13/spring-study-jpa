@@ -104,3 +104,8 @@
     - auto-ddl 환경을 대응할 수 있다.
 31. @Query 애노테이션 사용하기
 32. Native Query 활용하기
+33. Converter 활용하기
+    - AttributeConverter 구현체 만들기
+    - @Converter 애노테이션 사용
+      - autoApply 속성 사용 시 주의
+    - @Convert 애노테이션 사용

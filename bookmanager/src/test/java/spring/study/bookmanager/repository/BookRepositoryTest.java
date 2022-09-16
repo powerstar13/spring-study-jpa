@@ -8,6 +8,7 @@ import spring.study.bookmanager.domain.Book;
 import spring.study.bookmanager.domain.Publisher;
 import spring.study.bookmanager.domain.Review;
 import spring.study.bookmanager.domain.User;
+import spring.study.bookmanager.repository.dto.BookStatus;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
@@ -180,6 +181,20 @@ class BookRepositoryTest {
         bookRepository.findAllCustom().forEach(System.out::println);
 
         System.out.println(bookRepository.showTables());
+    }
+
+    @Test
+    void converterTest() {
+
+        bookRepository.findAll().forEach(System.out::println);
+
+        Book book = new Book();
+        book.setName("또 다른 IT전문서적");
+        book.setStatus(new BookStatus(200));
+
+        bookRepository.save(book);
+
+        System.out.println(bookRepository.findRawRecord().values());
     }
 
     private void givenBookAndReview() {

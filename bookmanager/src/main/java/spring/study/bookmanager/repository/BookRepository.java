@@ -12,6 +12,7 @@ import spring.study.bookmanager.repository.dto.BookNameAndCategory;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
 
@@ -52,4 +53,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     @Query(value = "SHOW TABLES", nativeQuery = true)
     List<String> showTables();
+
+    @Query(value = "SELECT * FROM book ORDER BY id DESC LIMIT 1", nativeQuery = true)
+    Map<String, Object> findRawRecord();
 }

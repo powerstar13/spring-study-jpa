@@ -3,6 +3,8 @@ package spring.study.bookmanager.domain;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Where;
+import spring.study.bookmanager.domain.converter.BookStatusConverter;
+import spring.study.bookmanager.repository.dto.BookStatus;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -49,7 +51,6 @@ public class Book extends BaseEntity {
 //    @ToString.Exclude
 //    private List<Author> authors = new ArrayList<>();
 
-
     @OneToMany
     @JoinColumn(name = "book_id")
     @Builder.Default
@@ -57,6 +58,9 @@ public class Book extends BaseEntity {
     private List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
 
     private boolean deleted; // flag 사용하여 삭제 된 것으로 간주
+
+    @Convert(converter = BookStatusConverter.class) // AttributeConverter 구현체에서 @Converter(autoApply = true)가 사용되었을 경우에는 @Convert 애노테이션으로 명시해줄 필요가 없다.
+    private BookStatus status; // 판매 상태
 
 //    public void addAuthor(Author... authors) {
 //        Collections.addAll(this.authors, authors);

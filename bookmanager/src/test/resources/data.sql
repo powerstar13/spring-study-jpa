@@ -16,11 +16,11 @@ VALUES ('master', 'master@test.com', NOW(), NOW());
 INSERT INTO publisher (`id`, `name`)
 VALUES (1, '패스트캠퍼스');
 
-INSERT INTO book (`id`, `name`, `publisher_id`, `deleted`)
-VALUES (1, 'JPA 초격차 패키지', 1, false);
+INSERT INTO book (`id`, `name`, `publisher_id`, `deleted`, `status`)
+VALUES (1, 'JPA 초격차 패키지', 1, false, 100);
 
-INSERT INTO book (`id`, `name`, `publisher_id`, `deleted`)
-VALUES (2, 'Spring Security 초격차 패키지', 1, false);
+INSERT INTO book (`id`, `name`, `publisher_id`, `deleted`, `status`)
+VALUES (2, 'Spring Security 초격차 패키지', 1, false, 200);
 
-INSERT INTO book (`id`, `name`, `publisher_id`, `deleted`)
-VALUES (3, 'SpringBoot 올인원 패키지', 1, true);
+INSERT INTO book (`id`, `name`, `publisher_id`, `deleted`, `status`)
+VALUES (3, 'SpringBoot 올인원 패키지', 1, true, 100);
