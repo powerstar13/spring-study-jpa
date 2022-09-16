@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 import spring.study.bookmanager.domain.Book;
 import spring.study.bookmanager.repository.dto.BookNameAndCategory;
 
@@ -40,4 +41,15 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     @Query(value = "SELECT new spring.study.bookmanager.repository.dto.BookNameAndCategory(b.name, b.category) FROM Book b")
     Page<BookNameAndCategory> findBookNameAndCategory(Pageable pageable);
+
+    @Query(value = "SELECT * FROM book", nativeQuery = true) // Native Query의 경우에는 JPQL을 사용하지 못한다. DB에서 사용하는 SQL Query를 그대로 사용하게 된다. Dialect를 사용하지 않기 때문에 특정 DB에 의존적인 Query를 작성하게 된다.
+    List<Book> findAllCustom();
+
+    @Transactional // 이처럼 인터페이스에 바로 사용하지 않고 사용하는 쪽에 트랜잭션 애노테이션을 사용해도 된다. 취향에 따라 사용하면 된다.
+    @Modifying // 결과값을 int로 return하기 위해 사용
+    @Query(value = "UPDATE book SET category = 'IT전문서'", nativeQuery = true)
+    int updateCategories();
+
+    @Query(value = "SHOW TABLES", nativeQuery = true)
+    List<String> showTables();
 }

@@ -103,3 +103,4 @@
 30. @Column 애노테이션의 columnDefinition 옵션
     - auto-ddl 환경을 대응할 수 있다.
 31. @Query 애노테이션 사용하기
+32. Native Query 활용하기
