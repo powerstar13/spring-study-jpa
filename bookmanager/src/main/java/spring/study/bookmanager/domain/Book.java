@@ -1,6 +1,7 @@
 package spring.study.bookmanager.domain;
 
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
+@DynamicUpdate // 필요한 정보만 UPDATE하기 때문에 불필요한 요소까지 SET하지 않는다. (Dirty Read의 경우 사용하기 좋음)
 public class Book extends BaseEntity {
 
     @Id
