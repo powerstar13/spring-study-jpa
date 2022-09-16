@@ -102,3 +102,4 @@
     - Entity에서 deleted를 flag 값으로 사용하고 @Where 애노테이션을 통해 clause 옵션에 Query를 명시
 30. @Column 애노테이션의 columnDefinition 옵션
     - auto-ddl 환경을 대응할 수 있다.
+31. @Query 애노테이션 사용하기
