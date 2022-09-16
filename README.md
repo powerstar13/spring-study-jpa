@@ -89,3 +89,10 @@
     - NEVER
 26. @Transactional 애노테이션은 Type과 Method에 붙일 수 있다.
     - Type이란 Class를 말함
+27. JPA에서 Cascade 활용하기
+    - ALL
+    - PERSIST
+    - MERGE
+    - REMOVE
+    - REFRESH
+    - DETACH

@@ -38,7 +38,7 @@ public class Book extends BaseEntity {
     @ToString.Exclude
     private List<Review> reviews = new ArrayList<>();
 
-    @ManyToOne
+    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}) // cascade 옵션을 통해 영속성 전이를 일으킨다. Book이 Persist, Merge, Remove가 될 때 Publisher도 Persist, Merge, Remove 해라는 의미이다.
     @ToString.Exclude
     private Publisher publisher;
 

@@ -24,5 +24,10 @@ public class Publisher extends BaseEntity {
     @Builder.Default
     @OneToMany
     @JoinColumn(name = "publisher_id") // JOIN을 어떠한 컬럼으로 매핑할지 name 속성으로 명시한다.
+    @ToString.Exclude
     private List<Book> books = new ArrayList<>();
+
+    public void addBook(Book book) {
+        this.books.add(book);
+    }
 }
