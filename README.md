@@ -111,3 +111,6 @@
     - @Convert 애노테이션 사용
 34. @Embedded, @Embeddable
     - @AttributeOverride 애노테이션을 통해 별도로 매핑할 수도 있다.
+35. JPA에서의 N+1 이슈 해결책
+    - JPQL의 JOIN FETCH를 이용하는 방법
+    - EntityGraph를 이용하는 방법
