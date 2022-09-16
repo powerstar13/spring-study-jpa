@@ -14,6 +14,9 @@ import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
+
 @SpringBootTest
 @Transactional
 class UserRepositoryTest {
@@ -393,5 +396,11 @@ class UserRepositoryTest {
         userHistoryRepository.findAll().forEach(System.out::println);
 
         userRepository.findAllRawRecord().forEach(a -> System.out.println(a.values()));
+
+        assertAll(
+            () -> assertThat(userRepository.findById(7L).get().getHomeAddress()).isNull(),
+//            () -> assertThat(userRepository.findById(8L).get().getHomeAddress()).isInstanceOf(Address.class)
+            () -> assertThat(userRepository.findById(8L).get().getHomeAddress()).isNull()
+        );
     }
 }

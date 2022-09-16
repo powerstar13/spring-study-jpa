@@ -114,3 +114,4 @@
 35. JPA에서의 N+1 이슈 해결책
     - JPQL의 JOIN FETCH를 이용하는 방법
     - EntityGraph를 이용하는 방법
+36. 영속성 컨텍스트 불일치 이슈
