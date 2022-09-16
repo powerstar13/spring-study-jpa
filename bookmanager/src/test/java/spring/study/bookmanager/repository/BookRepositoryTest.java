@@ -9,6 +9,7 @@ import spring.study.bookmanager.domain.Review;
 import spring.study.bookmanager.domain.User;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 
 @SpringBootTest
 @Transactional
@@ -129,6 +130,20 @@ class BookRepositoryTest {
 
         bookRepository.findAllByDeletedFalse().forEach(System.out::println);
         bookRepository.findByCategoryIsNullAndDeletedFalse().forEach(System.out::println);
+    }
+
+    @Test
+    void queryTest() {
+
+        bookRepository.findAll().forEach(System.out::println);
+
+        System.out.println("findByCategoryIsNullAndNameEqualsAndCreatedAtGreaterThanEqualAndUpdatedAtGreaterThanEqual: " +
+            bookRepository.findByCategoryIsNullAndNameEqualsAndCreatedAtGreaterThanEqualAndUpdatedAtGreaterThanEqual(
+                "JPA 초격차 패키지",
+                LocalDateTime.now().minusDays(1L),
+                LocalDateTime.now().minusDays(1L)
+            )
+        );
     }
 
     private void givenBookAndReview() {
